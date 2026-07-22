@@ -1,0 +1,11 @@
+Nümtema MCP Foundry v1.3.0
+
+b40d4d91937efea32bd934910e3d77aef40e25c63ad598bb6eb9169dd7980b0  numtema-mcp-foundry-v1.3.0-sprint-1.3.zip
+1b16cc101f257eb527f1db087adbc8829427d1d37c5417ab955b26095f7e7abc  numtema-mcp-foundry-1.3.0.tgz
+
+Verification:
+- 145 tests passed
+- 59 suites passed
+- 0 failures
+- foundry doctor: 19/19
+- runtime dependencies: 0
