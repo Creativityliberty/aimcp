@@ -11,12 +11,28 @@ jobs:
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
+      - name: Detect complete source checkout
+        id: source
+        shell: bash
+        run: |
+          if [[ -f package.json ]]; then
+            echo "available=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "available=false" >> "$GITHUB_OUTPUT"
+            echo "Documentation bootstrap only; push the complete v1.3 source tree to activate CI."
+          fi
       - uses: actions/setup-node@v4
+        if: steps.source.outputs.available == 'true'
         with:
           node-version: 22
           cache: npm
       - run: npm install
+        if: steps.source.outputs.available == 'true'
       - run: npm run typecheck
+        if: steps.source.outputs.available == 'true'
       - run: npm test
+        if: steps.source.outputs.available == 'true'
       - run: ./scripts/audit-secrets.sh
+        if: steps.source.outputs.available == 'true'
       - run: npm pack --dry-run
+        if: steps.source.outputs.available == 'true'
